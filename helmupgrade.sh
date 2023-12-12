@@ -1,7 +1,7 @@
 #!/bin/bash
 
-helm upgrade --install my-vcluster vcluster \
-  --values myvalues.yaml \
+helm upgrade -i my-vcluster vcluster \
+  --atomic --values myvalues_k8s.yaml \
   --repo https://charts.loft.sh \
-  --namespace vcluster-my-vcluster \
+  --create-namespace -n vcluster-my-vcluster \
   --repository-config=''

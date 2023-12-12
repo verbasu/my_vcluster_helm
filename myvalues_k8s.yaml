@@ -1,0 +1,24 @@
+etcd:
+  image: registry.k8s.io/etcd:3.5.9-0
+controller:
+  image: registry.k8s.io/kube-controller-manager:v1.28.2
+scheduler:
+  image: registry.k8s.io/kube-scheduler:v1.28.2
+api:
+  image: registry.k8s.io/kube-apiserver:v1.28.2
+
+service:
+  type: ClusterIP
+  externalIPs:
+    - 192.168.0.51
+
+ingress:
+  enabled: true
+  pathType: ImplementationSpecific
+  ingressClassName: ""
+  host: vcluster.stealth.local
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+
